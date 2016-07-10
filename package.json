@@ -4,7 +4,7 @@
   "description": "A web app for determining when is best to meet with a group of people.",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"No tests set up.\" && exit 1",
+    "test": "echo \"No tests set up.\" && exit 0",
     "start": "./node_modules/.bin/nodemon -L ./src/app.js"
   },
   "author": "",
