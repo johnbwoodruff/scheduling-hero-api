@@ -1,5 +1,7 @@
 # What Time
 
+[![Build Status](https://travis-ci.org/jbw91/what-time.svg?branch=master)](https://travis-ci.org/jbw91/what-time)
+
 What Time is a web app for determining when is best to meet with a group of people.
 
 ## Contributing
