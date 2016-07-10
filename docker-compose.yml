@@ -1,0 +1,10 @@
+api:
+  build: .
+  ports:
+    - "3000:3000"
+  volumes:
+    - ./src:/app/src
+  links:
+    - db
+db:
+  image: mongo:3.3
