@@ -13,6 +13,8 @@ Have a bug/suggestion/improvement you want to submit?
 
 All code changes to this repository should be done by submitting a pull request. This ensures that the code can be properly reviewed before being merged.
 
+Any changes should be accompanied with quality unit tests. Pull requests with failed builds will not be accepted.
+
 Commit messages should be descriptive of the change. (i.e. "a few small changes" is not a good commit message)
 
 ## Coding Conventions
