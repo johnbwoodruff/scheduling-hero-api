@@ -5,6 +5,7 @@ api:
     - "5858:5858"
   volumes:
     - ./src:/app/src
+    - ./test:/app/test
   links:
     - db
 db:
