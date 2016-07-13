@@ -18,7 +18,7 @@ Please see [CONTRIBUTING](./CONTRIBUTING.md) for the repository's guidelines for
 Install the global dependencies:
 
 ```shell
-$ npm install -g typescript angular-cli
+$ npm install -g typescript typings angular-cli
 ```
 
 Then, after cloning the repo, `cd` into the directory and run `npm install`.

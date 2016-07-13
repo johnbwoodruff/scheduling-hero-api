@@ -4,10 +4,11 @@
   "description": "A web app for determining when is best to meet with a group of people.",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node test",
-    "start": "./node_modules/.bin/nodemon -L --debug=5858 ./src/index.js"
+    "lint": "jshint --reporter=node_modules/jshint-stylish src/**",
+    "test": "npm run lint && jasmine-node test",
+    "start": "nodemon -L --debug=5858 ./src/index.js"
   },
-  "author": "",
+  "author": "John Woodruff <johnwoodruff91@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -16,6 +17,8 @@
   },
   "devDependencies": {
     "jasmine-node": "^1.14.5",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
     "node-mocks-http": "^1.5.2",
     "nodemon": "^1.9.2"
   }

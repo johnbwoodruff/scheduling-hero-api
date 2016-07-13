@@ -8,6 +8,11 @@ var app = express();
 var routes = require('./routes/routes');
 var db = require('./db/db');
 
+db.once('open', function () {
+	// Connection to database now open
+	console.log('Connection succeeded.');
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
