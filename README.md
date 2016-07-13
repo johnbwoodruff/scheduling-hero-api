@@ -34,7 +34,7 @@ $ docker-compose build
 $ docker-compose up
 ```
 
-When the image is running successfully, you'll be able to access it by visiting [http://localhost:3000](http://localhost:3000/). Any changes you make to the code, nodemon will reload the server upon saving the file.
+When the image is running successfully, you'll be able to access it by visiting [http://localhost:3000/hello](http://localhost:3000/hello). Any changes you make to the code, nodemon will reload the server upon saving the file.
 
 ## License
 
