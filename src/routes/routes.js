@@ -13,6 +13,7 @@ router.get('/hello', Test.hello);
 router.get('/users', Users.getAllUsers);
 router.post('/users', Users.createUser);
 router.get('/users/:id', Users.getUserById);
+router.get('/users/:id/events', Users.getEventsByUser);
 router.put('/users/:id', Users.updateUser);
 router.delete('/users/:id', Users.deleteUser);
 

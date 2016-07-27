@@ -1,5 +1,7 @@
 'use strict';
-var User = require('../../models/user');
+var User = require('../../models/user'),
+	Events = require('../../models/request');
+
 
 exports.getAllUsers = function (req, res) {
 	User.find({}, function(err,data) {
@@ -33,6 +35,19 @@ exports.getUserById = function (req, res) {
 	User.findOne({_id:id}, function(err, data) {
 		if(err) {
 			res.status(404).json({message: 'User not found of id: ' + id});
+		}
+		else {
+			res.status(200).json(data);
+		}
+	});
+};
+
+exports.getEventsByUser = function (req, res) {
+	var id = req.params.id;
+
+	Events.find({requestedBy:id}, function (err, data) {
+		if (err) {
+			res.status(500).json({message: 'Database access error.'});
 		}
 		else {
 			res.status(200).json(data);
