@@ -2,6 +2,8 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+require('dotenv').config(); // GET CONFIG
 
 var port = 3000;
 var app = express();
@@ -15,6 +17,7 @@ db.once('open', function () {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
 
 // Use routes.index to map URLs to handlers in ./api
 app.use('/', routes);

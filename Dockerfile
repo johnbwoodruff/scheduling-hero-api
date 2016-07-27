@@ -7,6 +7,7 @@ WORKDIR /app
 # Install app dependencies
 COPY package.json /app/package.json
 COPY .jshintrc /app/.jshintrc
+COPY .env /app/.env
 RUN npm install
 
 EXPOSE 3000
