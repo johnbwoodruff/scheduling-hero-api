@@ -10,18 +10,44 @@ Please see [CONTRIBUTING](./CONTRIBUTING.md) for the repository's guidelines for
 
 ### Prerequisites
 
+Ensure you have the following installed on your machine:
+
 * Node.js & NPM
-* Docker
+* Docker/Docker for Mac/Docker for Windows
+
+**NOTE:** It is recommended if you are on a Mac or Windows machine you **not** use Docker Toolbox/boot2docker.
 
 ## Getting Started
 
-Install the global dependencies:
+After cloning the repo, `cd` into the directory and run `npm install`.
 
-```shell
-$ npm install -g typescript typings angular-cli
+### Google Credentials
+
+**NOTE: YOU WILL NOT BE ABLE TO RUN THIS APP WITHOUT FOLLOWING THESE INSTRUCTIONS**
+
+This app uses Google OAuth2 for authentication. As such, you will need to set up a Google Cloud Console Project. Follow the instructions below to do so:
+
+- Visit [Google Cloud Console](https://cloud.google.com/console/project)
+- Click on the **Create Project** button
+- Enter *Project Name*, then click the **Create** button
+- Then click on *Enable and manage APIs* under *Use Google APIs* and then select the *Library* tab in the sidebar.
+- Click on **Google+ API** under *Social APIs*, then click **Enable**
+- Next, click on the *Credentials* tab in the sidebar
+- Select the *OAuth consent screen* tab and fill out all the required fields, then click **Save**.
+- Click on the *Credentials* tab and select *OAuth Client ID* under the *Create Credentials* dropdown.
+- Select *Web Application*, then fill out the required fields. Use the following:
+ - **Application Type**: Web Application
+ - **Authorized Javascript origins**: http://localhost:3000
+ - **Authorized redirect URI**: http://localhost:3000/auth/google/callback
+- Click on the **Create** button
+- Create a file in the root directory of this project named `.env`. In that file, paste the following:
+
+```
+GOOGLE_ID=<GOOGLE CLIENT ID>
+GOOGLE_SECRET=<GOOGLE CLIENT SECRET>
 ```
 
-Then, after cloning the repo, `cd` into the directory and run `npm install`.
+Copy and paste the *Client ID* and *Client secret* keys from your newly created project into your `.env` file as shown above.
 
 ### Running the App
 
