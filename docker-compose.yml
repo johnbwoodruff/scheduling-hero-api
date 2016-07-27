@@ -1,5 +1,7 @@
 api:
   build: .
+  environment:
+    - "NODE_ENV=development"
   ports:
     - "3000:3000"
     - "5858:5858"

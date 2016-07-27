@@ -36,6 +36,10 @@ $ docker-compose up
 
 When the image is running successfully, you'll be able to access it by visiting [http://localhost:3000/hello](http://localhost:3000/hello). Any changes you make to the code, nodemon will reload the server upon saving the file.
 
+### Wireframes
+
+This app is still very heavily being wireframed. If you'd like to follow along with the progress, check out the [Moqups Project](https://app.moqups.com/johnwoodruff91/Eg2wMFKLXy/view).
+
 ## License
 
 What Time is released under the [MIT License](./LICENSE).
