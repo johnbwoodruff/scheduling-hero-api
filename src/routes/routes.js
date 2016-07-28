@@ -2,26 +2,31 @@
 
 var express = require('express'),
 	router = express.Router(),
-	Test = require('./test/test.controller'),
-	Users = require('./users/users.controller'),
-	Events = require('./events/events.controller');
+	AuthCtrl = require('./auth/auth.controller'),
+	TestCtrl = require('./test/test.controller'),
+	UserCtrl = require('./users/users.controller'),
+	EventCtrl = require('./events/events.controller');
 
 // TEST ROUTE
-router.get('/hello', Test.hello);
+router.get('/hello', TestCtrl.hello);
+
+// AUTH ROUTES
+router.get('/auth/google', AuthCtrl.loginGoogle);
+router.get('/auth/google/callback', AuthCtrl.googleCallback, AuthCtrl.successfulLogin);
 
 // USER ROUTES
-router.get('/users', Users.getAllUsers);
-router.post('/users', Users.createUser);
-router.get('/users/:id', Users.getUserById);
-router.get('/users/:id/events', Users.getEventsByUser);
-router.put('/users/:id', Users.updateUser);
-router.delete('/users/:id', Users.deleteUser);
+router.get('/users', UserCtrl.getAllUsers);
+router.post('/users', UserCtrl.createUser);
+router.get('/users/:id', UserCtrl.getUserById);
+router.get('/users/:id/events', UserCtrl.getEventsByUser);
+router.put('/users/:id', UserCtrl.updateUser);
+router.delete('/users/:id', UserCtrl.deleteUser);
 
 // EVENT ROUTES
-router.get('/events', Events.getAllEvents);
-router.post('/events', Events.createEvent);
-router.get('/events/:id', Events.getEventById);
-router.put('/events/:id', Events.updateEvent);
-router.delete('/events/:id', Events.deleteEvent);
+router.get('/events', EventCtrl.getAllEvents);
+router.post('/events', EventCtrl.createEvent);
+router.get('/events/:id', EventCtrl.getEventById);
+router.put('/events/:id', EventCtrl.updateEvent);
+router.delete('/events/:id', EventCtrl.deleteEvent);
 
 module.exports = router;

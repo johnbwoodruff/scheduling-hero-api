@@ -14,6 +14,7 @@ before_script:
   - npm install
 
 script:
+  - printf '%s\n' 'GOOGLE_ID=fakeid' 'GOOGLE_SECRET=fakesecret' > .env
   - docker-compose build
   - docker-compose up -d
   - docker exec whattime_api_1 npm test
