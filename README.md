@@ -1,6 +1,6 @@
 # What Time
 
-[![Build Status](https://travis-ci.org/jbw91/what-time.svg?branch=master)](https://travis-ci.org/jbw91/what-time)
+[![Build Status](https://travis-ci.org/jbw91/what-time.svg?branch=master)](https://travis-ci.org/jbw91/what-time) [![bitHound Dependencies](https://www.bithound.io/github/jbw91/what-time/badges/dependencies.svg)](https://www.bithound.io/github/jbw91/what-time/master/dependencies/npm)
 
 What Time is a web app for determining when is best to meet with a group of people.
 
