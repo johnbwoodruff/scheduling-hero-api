@@ -9,7 +9,8 @@ var userSchema = new Schema({
 	lastName: String,
 	dateCreated: Date,
 	email: String,
-	profilePhoto: String
+	profilePhoto: String,
+	refreshToken: String
 });
 
 module.exports = mongoose.model("User", userSchema);

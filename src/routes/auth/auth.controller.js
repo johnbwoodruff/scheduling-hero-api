@@ -12,7 +12,7 @@ passport.use(new GoogleStrategy({
 }, function (req, accessToken, refreshToken, profile, done) {
 	User.findOne({ userId: profile.id }, function (err, user) {
 		var userInfo = jwt.decode(refreshToken.id_token);
-		if(user) {
+		if (user) {
 			return done(err, user);
 		}
 		else {
@@ -22,7 +22,8 @@ passport.use(new GoogleStrategy({
 				lastName: userInfo.family_name,
 				dateCreated: new Date(),
 				email: userInfo.email,
-				profilePhoto: userInfo.picture
+				profilePhoto: userInfo.picture,
+				refreshToken: refreshToken.access_token
 			});
 			newUser.save(function(error, data) {
 				return done(err, data);
@@ -51,5 +52,5 @@ exports.googleCallback = passport.authenticate('google', { failureRedirect: '/he
 
 // Function on Successful Login
 exports.successfulLogin = function(req, res) {
-	res.status(200).json(req.user);
+	return res.redirect(301, 'http://localhost:4200/authredirect?access_token=' + req.user.refreshToken);
 };
