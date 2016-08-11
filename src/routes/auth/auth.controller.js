@@ -26,6 +26,10 @@ passport.use(new GoogleStrategy({
 				refreshToken: refreshToken.access_token
 			});
 			newUser.save(function(error, data) {
+				if(error) {
+					console.log(error);
+					return res.status(500).json({message: 'Error saving user to database.'});
+				}
 				return done(err, data);
 			});
 		}
