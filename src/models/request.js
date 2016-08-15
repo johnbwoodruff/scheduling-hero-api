@@ -12,7 +12,16 @@ var requestSchema = new Schema({
 	description: String,
 	location: String,
 	invitees: [String], // List of email addresses
-	responses: [] // Not defined yet as we are not sure how we want these to look.
+	responses: [{
+		invitee: String,
+		availability: [{
+			date: Date,
+			times: [{ // List of start and end availability times
+				startTime: String,
+				endTime: String
+			}]
+		}]
+	}]
 });
 
 module.exports = mongoose.model("Request", requestSchema);

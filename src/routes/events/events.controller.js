@@ -71,3 +71,19 @@ exports.deleteEvent = function (req, res) {
 		}
 	});
 };
+
+exports.createResponse = function(req, res) {
+	var response = req.body;
+	var id = req.params.id;
+	console.log(response);
+
+	Request.findOne({_id:id}, function(err, data) {
+		if (err) {
+			res.status(404).json({message: 'Event not found with id: ' + id});
+		}
+		else {
+			data.responses.push(response);
+			res.status(201).json(data);
+		}
+	});
+};
