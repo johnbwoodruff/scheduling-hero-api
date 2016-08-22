@@ -72,6 +72,19 @@ exports.deleteEvent = function (req, res) {
 	});
 };
 
+exports.getEventResponses = function(req, res) {
+	var id = req.params.id;
+
+	Request.findOne({_id:id}, function(err, data) {
+		if (err) {
+			res.status(404).json({message: 'Event not found with id: ' + id});
+		}
+		else {
+			res.status(201).json(data.responses);
+		}
+	});
+};
+
 exports.createResponse = function(req, res) {
 	var response = req.body;
 	var id = req.params.id;
@@ -83,7 +96,13 @@ exports.createResponse = function(req, res) {
 		}
 		else {
 			data.responses.push(response);
-			res.status(201).json(data);
+			data.save(function() {
+				res.status(201).json(data);
+			});
 		}
 	});
 };
+
+
+// TODO: Add in a delete response endpoint
+// Use this: Request.findOneAndRemove({"responses._id":ObjectId("57bb3e140f32831f00467a13")})

@@ -28,6 +28,7 @@ router.post('/events', EventCtrl.createEvent);
 router.get('/events/:id', EventCtrl.getEventById);
 router.put('/events/:id', EventCtrl.updateEvent);
 router.delete('/events/:id', EventCtrl.deleteEvent);
+router.get('/events/:id/responses', EventCtrl.getEventResponses);
 router.post('/events/:id/responses', EventCtrl.createResponse);
 
 
