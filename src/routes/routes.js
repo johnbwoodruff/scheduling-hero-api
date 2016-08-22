@@ -30,6 +30,7 @@ router.put('/events/:id', EventCtrl.updateEvent);
 router.delete('/events/:id', EventCtrl.deleteEvent);
 router.get('/events/:id/responses', EventCtrl.getEventResponses);
 router.post('/events/:id/responses', EventCtrl.createResponse);
+router.delete('/events/:id/responses/:responseId', EventCtrl.deleteResponse);
 
 
 module.exports = router;

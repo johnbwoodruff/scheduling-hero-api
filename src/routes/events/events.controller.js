@@ -103,6 +103,23 @@ exports.createResponse = function(req, res) {
 	});
 };
 
+exports.deleteResponse = function(req, res) {
+	var id = req.params.responseId;
 
-// TODO: Add in a delete response endpoint
-// Use this: Request.findOneAndRemove({"responses._id":ObjectId("57bb3e140f32831f00467a13")})
+	Request.findOne({'responses._id':id}, function(err, data) {
+		if (err) {
+			res.status(404).json({message: 'Response not found with id: ' + id});
+		}
+		else {
+			for(var i = 0; i < data.responses.length; i++) {
+				if(data.responses[i]._id == id) {
+					data.responses.splice(i,1);
+					break;
+				}
+			}
+			data.save(function() {
+				res.status(204).json();
+			});
+		}
+	});
+};
