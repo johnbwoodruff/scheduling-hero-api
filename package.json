@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "jshint --reporter=node_modules/jshint-stylish src/**",
     "test": "npm run lint && jasmine-node test",
-    "start": "nodemon -L --debug=5858 ./src/index.js"
+    "start": "nodemon -L --debug=5858 ./src/index.js",
+    "docs.generate": "jsdoc src -r -R ./README.md -c ./jsdoc-config.json",
+    "docs": "npm run docs.generate && http-server ./docs -a localhost -p 3001 -o"
   },
   "author": "John Woodruff <johnwoodruff91@gmail.com>",
   "license": "MIT",
@@ -22,6 +24,7 @@
     "passport-google-oauth": "^1.0.0"
   },
   "devDependencies": {
+    "http-server": "^0.9.0",
     "jasmine-node": "^1.14.5",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
