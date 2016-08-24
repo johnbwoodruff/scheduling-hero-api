@@ -1,5 +1,6 @@
 /node_modules/
 /docs/
+.DS_Store
 
 # DO NOT REMOVE ANYTHING BELOW THIS LINE
 # API Keys and Secrets

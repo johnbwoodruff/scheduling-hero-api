@@ -1,6 +1,9 @@
+/**
+ * @module UserController
+ */
 'use strict';
 var User = require('../../models/user'),
-	Events = require('../../models/request');
+	Event = require('../../models/event');
 
 /**
  * @description Get all active users in the database
@@ -76,7 +79,7 @@ function getUserById(req, res) {
 function getEventsByUser(req, res) {
 	var id = req.params.id;
 
-	Events.find({requestedBy:id}, function (err, data) {
+	Event.find({requestedBy:id}, function (err, data) {
 		if (err) {
 			res.status(500).json({message: 'Database access error.'});
 		}
