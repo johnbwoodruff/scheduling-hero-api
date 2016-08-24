@@ -3,8 +3,12 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var requestSchema = new Schema({
-	requestedBy: Schema.Types.ObjectId,
+/**
+ * Creates a new Event
+ * @class
+ */
+var Event = new Schema({
+	event: Schema.Types.ObjectId,
 	dateCreated: Date,
 	targetStartDate: Date,
 	targetEndDate: Date,
@@ -24,4 +28,4 @@ var requestSchema = new Schema({
 	}]
 });
 
-module.exports = mongoose.model("Request", requestSchema);
+module.exports = mongoose.model("Event", Event);

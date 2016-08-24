@@ -1,8 +1,19 @@
+/**
+ * @module EventsController
+ */
 'use strict';
-var Request = require('../../models/request');
+var Event = require('../../models/event');
 
-exports.getAllEvents = function (req, res) {
-	Request.find({}, function(err, data) {
+/**
+ * @description Get all events in the database
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns {Event[]} 200 Ok
+ */
+function getAllEvents(req, res) {
+	Event.find({}, function(err, data) {
 		if (err) {
 			res.status(500).json({message: 'Error getting events from database'});
 		}
@@ -10,13 +21,21 @@ exports.getAllEvents = function (req, res) {
 			res.status(200).json(data);
 		}
 	});
-};
+}
 
-exports.createEvent = function (req, res) {
-	var request = new Request(req.body);
-	request.dateCreated = new Date();
+/**
+ * @description Create a new event
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns {Event} 201 Created
+ */
+function createEvent(req, res) {
+	var event = new Event(req.body);
+	event.dateCreated = new Date();
 
-	request.save(function(err, data) {
+	event.save(function(err, data) {
 		if (err) {
 			res.status(500).json({message: 'Error saving event to database'});
 		}
@@ -25,12 +44,20 @@ exports.createEvent = function (req, res) {
 			res.status(201).json(data);
 		}
 	});
-};
+}
 
-exports.getEventById = function (req, res) {
+/**
+ * @description Get a single event by ID
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns {Event} 200 Ok
+ */
+function getEventById(req, res) {
 	var id = req.params.id;
 
-	Request.findOne({_id:id}, function(err, data) {
+	Event.findOne({_id:id}, function(err, data) {
 		if (err) {
 			res.status(404).json({message: 'Event not found with id: ' + id});
 		}
@@ -38,18 +65,26 @@ exports.getEventById = function (req, res) {
 			res.status(200).json(data);
 		}
 	});
-};
+}
 
-exports.updateEvent = function (req, res) {
+/**
+ * @description Update a single event's info
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns 204 No Content
+ */
+function updateEvent(req, res) {
 	var request = req.body;
 	var id = req.params.id;
 
 	// Remove fields we don't want to update from model
-	delete request._id;
-	delete request.dateCreated;
-	delete request.__v;
+	delete event._id;
+	delete event.dateCreated;
+	delete event.__v;
 
-	Request.findOneAndUpdate({_id:id}, request, function(err) {
+	Event.findOneAndUpdate({_id:id}, request, function(err) {
 		if (err) {
 			res.status(500).json({message:'Error updating document'});
 		}
@@ -57,12 +92,20 @@ exports.updateEvent = function (req, res) {
 			res.status(204).json();
 		}
 	});
-};
+}
 
-exports.deleteEvent = function (req, res) {
+/**
+ * @description Delete an event from the database
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns 204 No Content
+ */
+function deleteEvent(req, res) {
 	var id = req.params.id;
 
-	Request.findOneAndRemove({_id:id}, function(err) {
+	Event.findOneAndRemove({_id:id}, function(err) {
 		if (err) {
 			res.status(404).json({message: 'Event not found with id: ' + id});
 		}
@@ -70,27 +113,43 @@ exports.deleteEvent = function (req, res) {
 			res.status(204).json();
 		}
 	});
-};
+}
 
-exports.getEventResponses = function(req, res) {
+/**
+ * @description Get all responses for a specific event
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns {EventResponse[]} 200 Ok
+ */
+function getEventResponses(req, res) {
 	var id = req.params.id;
 
-	Request.findOne({_id:id}, function(err, data) {
+	Event.findOne({_id:id}, function(err, data) {
 		if (err) {
 			res.status(404).json({message: 'Event not found with id: ' + id});
 		}
 		else {
-			res.status(201).json(data.responses);
+			res.status(200).json(data.responses);
 		}
 	});
-};
+}
 
-exports.createResponse = function(req, res) {
+/**
+ * @description Create a new response for a specific event
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns {Event} 201 Created
+ */
+function createResponse(req, res) {
 	var response = req.body;
 	var id = req.params.id;
 	console.log(response);
 
-	Request.findOne({_id:id}, function(err, data) {
+	Event.findOne({_id:id}, function(err, data) {
 		if (err) {
 			res.status(404).json({message: 'Event not found with id: ' + id});
 		}
@@ -101,12 +160,20 @@ exports.createResponse = function(req, res) {
 			});
 		}
 	});
-};
+}
 
-exports.deleteResponse = function(req, res) {
+/**
+ * @description Delete a response for a specific event
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns 204 No Content
+ */
+function deleteResponse(req, res) {
 	var id = req.params.responseId;
 
-	Request.findOne({'responses._id':id}, function(err, data) {
+	Event.findOne({'responses._id':id}, function(err, data) {
 		if (err) {
 			res.status(404).json({message: 'Response not found with id: ' + id});
 		}
@@ -122,4 +189,13 @@ exports.deleteResponse = function(req, res) {
 			});
 		}
 	});
-};
+}
+
+exports.getAllEvents = getAllEvents;
+exports.createEvent = createEvent;
+exports.getEventById = getEventById;
+exports.updateEvent = updateEvent;
+exports.deleteEvent = deleteEvent;
+exports.getEventResponses = getEventResponses;
+exports.createResponse = createResponse;
+exports.deleteResponse = deleteResponse;
