@@ -3,10 +3,8 @@
  */
 'use strict';
 var nodemailer = require('nodemailer'),
-	mg = require('nodemailer-mailgun-transport'),
-	handlebars = require('handlebars');
+	mg = require('nodemailer-mailgun-transport');
 
-// This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 var auth = {
   auth: {
     api_key: process.env.MAILGUN_KEY,
@@ -16,29 +14,36 @@ var auth = {
 
 var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
+/**
+ * @description Send an HTML email using Mailgun
+ * 
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ * 
+ * @returns 204 No Content
+ */
 function sendMail(req, res) {
-	var context = {};
-	nodemailerMailgun.sendMail({
+	var body = req.body;
+	var options = {
 		from: 'Scheduling Hero <noreply@schedulinghero.com>',
-		to: 'johnwoodruff91@gmail.com',
-		cc:'kaitlynwoodruff94@gmail.com',
-		//   bcc:'secretagent@company.gov',
-		subject: 'Test Email!',
-		//   'h:Reply-To': 'reply2this@company.com',
-		template: {
-			name: 'base-template.hbs',
-			engine: handlebars,
-			context: context
+		to: body.to,
+		// 'h:Reply-To': 'reply2this@company.com',
+		subject: body.subject,
+		html: body.html
+	};
+	if(body.cc) {
+		options.cc = body.cc;
+	}
+	if(body.bcc) {
+		options.bcc = body.bcc;
+	}
+	nodemailerMailgun.sendMail(options, function (err) {
+		if (err) {
+			res.status(500).json({message: 'error occurred'});
 		}
-	}, function (err, info) {
-	if (err) {
-		console.log('Error: ' + err);
-		res.status(500).json({message: 'error occurred'});
-	}
-	else {
-		console.log('Response: ' + info);
-		res.status(204).json();
-	}
+		else {
+			res.status(204).json();
+		}
 	});
 }
 
