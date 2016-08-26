@@ -5,7 +5,8 @@ var express = require('express'),
 	AuthCtrl = require('./auth/auth.controller'),
 	TestCtrl = require('./test/test.controller'),
 	UserCtrl = require('./users/users.controller'),
-	EventCtrl = require('./events/events.controller');
+	EventCtrl = require('./events/events.controller'),
+	MailCtrl = require('./email/email.controller');
 
 // TEST ROUTE
 router.get('/hello', TestCtrl.hello);
@@ -32,5 +33,7 @@ router.get('/events/:id/responses', EventCtrl.getEventResponses);
 router.post('/events/:id/responses', EventCtrl.createResponse);
 router.delete('/events/:id/responses/:responseId', EventCtrl.deleteResponse);
 
+// MAIL ROUTES
+router.post('/mail', MailCtrl.sendMail);
 
 module.exports = router;
