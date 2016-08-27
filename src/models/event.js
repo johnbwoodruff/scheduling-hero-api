@@ -12,6 +12,8 @@ var Event = new Schema({
 	dateCreated: Date,
 	targetStartDate: Date,
 	targetEndDate: Date,
+	actualStartDate: Date,
+	actualEndDate: Date,
 	title: String,
 	description: String,
 	location: String,
