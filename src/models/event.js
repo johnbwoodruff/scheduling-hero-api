@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
  * @class
  */
 var Event = new Schema({
-	event: Schema.Types.ObjectId,
+	organizer: Schema.Types.ObjectId,
 	dateCreated: Date,
 	targetStartDate: Date,
 	targetEndDate: Date,
@@ -17,9 +17,12 @@ var Event = new Schema({
 	title: String,
 	description: String,
 	location: String,
-	invitees: [String], // List of email addresses
+	invitees: [{
+		name: String,
+		email: String
+	}],
 	responses: [{
-		invitee: String,
+		inviteeEmail: String,
 		availability: [{
 			date: Date,
 			times: [{ // List of start and end availability times

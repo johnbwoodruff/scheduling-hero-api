@@ -35,6 +35,7 @@ router.post('/events/:id/schedule', EventCtrl.setActualDates);
 router.delete('/events/:id/responses/:responseId', EventCtrl.deleteResponse);
 
 // MAIL ROUTES
-router.post('/mail', MailCtrl.sendMail);
+router.post('/mail', MailCtrl.sendMessage);
+router.post('/mail/appointment/:id', MailCtrl.sendEventInvitation);
 
 module.exports = router;

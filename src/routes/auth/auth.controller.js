@@ -1,6 +1,3 @@
-/**
- * @module AuthController
- */
 'use strict';
 var jwt = require('jsonwebtoken'),
 	passport = require('passport'),
@@ -50,29 +47,13 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-/**
- * @description Initial Authentication Method
- * 
- * @returns Redirect to /auth/google/callback
- */
-function loginGoogle() {
-	passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login','email','profile'] });
-}
+// Initial Authentication Method
+exports.loginGoogle = passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login','email','profile'] });
 
-/**
- * @description Google Authentication Callback
- * 
- * @returns Redirect to the frontend /authredirect with an access_token query param
- */
-function googleCallback() {
-	passport.authenticate('google', { failureRedirect: '/hello' });
-}
+// Google Authentication Callback
+exports.googleCallback = passport.authenticate('google', { failureRedirect: '/hello' });
 
 // Function on Successful Login
-function successfulLogin(req, res) {
+exports.successfulLogin = function(req, res) {
 	return res.redirect(301, 'http://localhost:4200/authredirect?access_token=' + req.user.refreshToken);
-}
-
-exports.successfulLogin = successfulLogin;
-exports.loginGoogle = loginGoogle;
-exports.googleCallback = googleCallback;
+};
