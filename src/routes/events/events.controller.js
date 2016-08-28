@@ -6,10 +6,10 @@ var Event = require('../../models/event');
 
 /**
  * @description Get all events in the database
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns {Event[]} 200 Ok
  */
 function getAllEvents(req, res) {
@@ -25,10 +25,10 @@ function getAllEvents(req, res) {
 
 /**
  * @description Create a new event
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns {Event} 201 Created
  */
 function createEvent(req, res) {
@@ -48,10 +48,10 @@ function createEvent(req, res) {
 
 /**
  * @description Get a single event by ID
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns {Event} 200 Ok
  */
 function getEventById(req, res) {
@@ -69,10 +69,10 @@ function getEventById(req, res) {
 
 /**
  * @description Update a single event's info
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns 204 No Content
  */
 function updateEvent(req, res) {
@@ -96,10 +96,10 @@ function updateEvent(req, res) {
 
 /**
  * @description Delete an event from the database
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns 204 No Content
  */
 function deleteEvent(req, res) {
@@ -117,10 +117,10 @@ function deleteEvent(req, res) {
 
 /**
  * @description Get all responses for a specific event
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns {EventResponse[]} 200 Ok
  */
 function getEventResponses(req, res) {
@@ -138,10 +138,10 @@ function getEventResponses(req, res) {
 
 /**
  * @description Create a new response for a specific event
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns {Event} 201 Created
  */
 function createResponse(req, res) {
@@ -163,11 +163,37 @@ function createResponse(req, res) {
 }
 
 /**
- * @description Delete a response for a specific event
- * 
+ * @description Sets actual start and end dates for a specific event
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
+ * @returns 204 No Content
+ */
+function setActualDates(req, res) {
+	var response = req.body;
+	var id = req.params.id;
+
+	Event.findOne({_id:id}, function(err, data) {
+		if (err) {
+			res.status(404).json({message: 'Event not found with id: ' + id});
+		}
+		else {
+			data.actualStartDate = response.actualStartDate;
+			data.actualEndDate = response.actualEndDate;
+			data.save(function() {
+				res.status(204).json();
+			});
+		}
+	});
+}
+
+/**
+ * @description Delete a response for a specific event
+ *
+ * @param {Request} req An HTTP Request
+ * @param {Response} res An HTTP Response
+ *
  * @returns 204 No Content
  */
 function deleteResponse(req, res) {
@@ -198,4 +224,5 @@ exports.updateEvent = updateEvent;
 exports.deleteEvent = deleteEvent;
 exports.getEventResponses = getEventResponses;
 exports.createResponse = createResponse;
+exports.setActualDates = setActualDates;
 exports.deleteResponse = deleteResponse;
