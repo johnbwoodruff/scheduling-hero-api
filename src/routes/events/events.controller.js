@@ -174,11 +174,6 @@ function setActualDates(req, res) {
 	var response = req.body;
 	var id = req.params.id;
 
-	// Remove fields we don't want to update from model
-	delete event._id;
-	delete event.dateCreated;
-	delete event.__v;
-
 	Event.findOne({_id:id}, function(err, data) {
 		if (err) {
 			res.status(404).json({message: 'Event not found with id: ' + id});
