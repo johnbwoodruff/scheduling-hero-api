@@ -1,6 +1,7 @@
 /node_modules/
 /docs/
 .DS_Store
+npm-debug.log
 
 # DO NOT REMOVE ANYTHING BELOW THIS LINE
 # API Keys and Secrets

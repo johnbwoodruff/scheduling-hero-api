@@ -4,6 +4,8 @@ FROM node:argon
 RUN mkdir /app
 WORKDIR /app
 
+RUN npm install -g nodemon
+
 # Install app dependencies
 COPY package.json /app/package.json
 COPY .jshintrc /app/.jshintrc

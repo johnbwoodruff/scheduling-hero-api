@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "jshint --reporter=node_modules/jshint-stylish src/**",
     "test": "npm run lint && jasmine-node test",
-    "start": "nodemon -L --debug=5858 ./src/index.js",
+    "start": "node ./src/index.js",
     "docs.generate": "rm -rf docs && jsdoc src -r -R ./README.md -t ./node_modules/minami -c ./jsdoc-config.json",
     "docs": "npm run docs.generate && http-server ./docs -a localhost -p 3001 -o"
   },

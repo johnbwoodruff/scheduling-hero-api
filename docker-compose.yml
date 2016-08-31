@@ -1,5 +1,6 @@
 api:
   build: .
+  command: nodemon --debug=5858 ./src/index.js
   environment:
     - "NODE_ENV=development"
   ports:
