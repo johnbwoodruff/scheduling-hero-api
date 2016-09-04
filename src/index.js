@@ -3,6 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var cors = require('cors');
 
 console.log(process.env.NODE_ENV);
 
@@ -15,6 +16,8 @@ var port = 3000;
 var app = express();
 var routes = require('./routes/routes');
 var db = require('./db/db');
+
+app.use(cors());
 
 db.once('open', function () {
 	// Connection to database now open
