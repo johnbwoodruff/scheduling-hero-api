@@ -16,12 +16,21 @@ var port = 3000;
 var app = express();
 var routes = require('./routes/routes');
 var db = require('./db/db');
+var prepopulate = require('./db/prepopulate');
 
 app.use(cors());
 
 db.once('open', function () {
 	// Connection to database now open
 	console.log('Connection succeeded.');
+	// If in dev mode and db is empty, prepopulate db
+	if(process.env.NODE_ENV === 'development') {
+		prepopulate.databaseIsEmpty(function(hasUsers) {
+			if(!hasUsers) {
+				prepopulate.populateDatabase();
+			}
+		});
+	}
 });
 
 app.use(bodyParser.json());
