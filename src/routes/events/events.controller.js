@@ -80,9 +80,9 @@ function updateEvent(req, res) {
 	var id = req.params.id;
 
 	// Remove fields we don't want to update from model
-	delete event._id;
-	delete event.dateCreated;
-	delete event.__v;
+	delete request._id;
+	delete request.dateCreated;
+	delete request.__v;
 
 	Event.findOneAndUpdate({_id:id}, request, function(err) {
 		if (err) {
