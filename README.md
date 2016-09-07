@@ -1,8 +1,8 @@
-# What Time
+# Scheduling Hero
 
-[![Build Status](https://travis-ci.org/jbw91/what-time.svg?branch=master)](https://travis-ci.org/jbw91/what-time) [![bitHound Dependencies](https://www.bithound.io/github/jbw91/what-time/badges/dependencies.svg)](https://www.bithound.io/github/jbw91/what-time/master/dependencies/npm) [![bitHound Code](https://www.bithound.io/github/jbw91/what-time/badges/code.svg)](https://www.bithound.io/github/jbw91/what-time)
+[![Build Status](https://travis-ci.org/jbw91/scheduling-hero-api.svg?branch=master)](https://travis-ci.org/jbw91/scheduling-hero-api) [![bitHound Dependencies](https://www.bithound.io/github/jbw91/scheduling-hero-api/badges/dependencies.svg)](https://www.bithound.io/github/jbw91/scheduling-hero-api/master/dependencies/npm) [![bitHound Code](https://www.bithound.io/github/jbw91/scheduling-hero-api/badges/code.svg)](https://www.bithound.io/github/jbw91/scheduling-hero-api)
 
-What Time is a web app for determining when is best to meet with a group of people.
+Scheduling Hero is a web app for determining when is best to meet with a group of people.
 
 ## Contributing
 
@@ -72,4 +72,4 @@ This app is still very heavily being wireframed. If you'd like to follow along w
 
 ## License
 
-What Time is released under the [MIT License](./LICENSE).
+Scheduling Hero is released under the [MIT License](./LICENSE).

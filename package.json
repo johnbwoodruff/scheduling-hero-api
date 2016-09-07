@@ -1,5 +1,5 @@
 {
-  "name": "what-time",
+  "name": "scheduling-hero-api",
   "version": "0.0.1",
   "description": "A web app for determining when is best to meet with a group of people.",
   "main": "src/index.js",

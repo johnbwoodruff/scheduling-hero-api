@@ -6,7 +6,7 @@ First off, thanks for caring enough about this project to contribute! In contrib
 
 Have a bug/suggestion/improvement you want to submit?
 
-* Check to make sure you're not creating a duplicate issue by searching in this repository's [Issues](https://github.com/jbw91/what-time/issues).
+* Check to make sure you're not creating a duplicate issue by searching in this repository's [Issues](https://github.com/jbw91/scheduling-hero-api/issues).
 * Include as much detail as you can. If you're submitting a bug, ensure you include steps to duplicate the issue.
 
 ## Code Changes
