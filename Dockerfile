@@ -12,6 +12,9 @@ COPY .jshintrc /app/.jshintrc
 COPY .env /app/.env
 RUN npm install
 
+# Bundle app source
+COPY ./src /app/src
+
 EXPOSE 3000
 EXPOSE 5858
 

@@ -1,0 +1,12 @@
+{
+	// See http://go.microsoft.com/fwlink/?LinkId=827846
+	// for the documentation about the extensions.json format
+	"recommendations": [
+		// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+		"EditorConfig.EditorConfig",
+		"PeterJausovec.vscode-docker",
+		"dbaeumer.jshint",
+		"felixrieseberg.vsc-travis-ci-status",
+		"joelday.docthis"
+	]
+}

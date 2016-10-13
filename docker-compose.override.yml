@@ -1,0 +1,10 @@
+api:
+  command: nodemon --debug=5858 ./src/index.js
+  environment:
+    - "NODE_ENV=development"
+  ports:
+    - "3000:3000"
+    - "5858:5858"
+  volumes:
+    - ./src:/app/src
+    - ./test:/app/test
