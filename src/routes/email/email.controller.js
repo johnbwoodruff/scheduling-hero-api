@@ -4,7 +4,8 @@
 'use strict';
 var nodemailer = require('nodemailer'),
 	_ = require('underscore'),
-	ics = require('ics'),
+	ICS = require('ics'),
+	ics = new ICS(),
 	mg = require('nodemailer-mailgun-transport'),
 	Event = require('../../models/event'),
 	User = require('../../models/user');
@@ -43,10 +44,10 @@ function sendEmail(email, cb) {
 
 /**
  * @description Send an HTML email using Mailgun
- * 
+ *
  * @param {Request} req An HTTP Request
  * @param {Response} res An HTTP Response
- * 
+ *
  * @returns 204 No Content
  */
 function sendMessage(req, res) {
@@ -74,13 +75,14 @@ function sendEventInvitation(req, res) {
 					res.status(404).json({message: 'Organizer not found'});
 				}
 				else {
+					console.log(event.actualStartDate);
 					var icsOptions = {
-						eventName: event.title,
-						filename: 'invite.ics',
-						dtstart: event.actualStartDate,
-						dtend: event.actualEndDate,
+						start: new Date(event.actualStartDate).toISOString(),
+						end: new Date(event.actualEndDate).toISOString(),
+						title: event.title,
 						description: event.description,
 						location: event.location,
+						status: 'confirmed',
 						organizer: {
 							name: user.firstName + ' ' + user.lastName,
 							email: user.email
@@ -99,7 +101,7 @@ function sendEventInvitation(req, res) {
 						email: user.email,
 						rsvp: true
 					});
-					var iCalString = ics.getEvent(icsOptions);
+					var iCalString = ics.buildEvent(icsOptions);
 					var email = {
 						to: _.map(event.invitees, function(invitee) {
 							return invitee.email;

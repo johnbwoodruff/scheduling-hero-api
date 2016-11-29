@@ -15,7 +15,7 @@ Ensure you have the following installed on your machine:
 * Node.js & NPM
 * Docker/Docker for Mac/Docker for Windows
 
-**NOTE:** It is recommended if you are on a Mac or Windows machine you **not** use Docker Toolbox/boot2docker.
+**NOTE:** It is recommended if you are on a Mac or Windows machine you **not** use Docker Toolbox/boot2docker, otherwise you will need to do lots of extra configuration on your own.
 
 ## Getting Started
 
@@ -49,6 +49,13 @@ GOOGLE_SECRET=<GOOGLE CLIENT SECRET>
 
 Copy and paste the *Client ID* and *Client secret* keys from your newly created project into your `.env` file as shown above.
 
+You will also need a domain and api key from [mailgun](http://www.mailgun.com/) so emails send correctly. Add those as well to your `.env` file as shown below.
+
+```
+MAILGUN_KEY=<MAILGUN API KEY>
+MAILGUN_DOMAIN=<MAILGUN DOMAIN>
+```
+
 ### Running the App
 
 To run the app, in the root directory, simply run the following commands:
@@ -60,7 +67,7 @@ $ docker-compose build
 $ docker-compose up
 ```
 
-When the image is running successfully, you'll be able to access it by visiting [http://localhost:3000/hello](http://localhost:3000/hello). Any changes you make to the code, nodemon will reload the server upon saving the file.
+When the image is running successfully, you'll be able to access it by visiting [http://localhost:3000/hello](http://localhost:3000/hello). Upon any changes you make to the code, nodemon will reload the server after you've saved the file.
 
 ### API Documentation
 
